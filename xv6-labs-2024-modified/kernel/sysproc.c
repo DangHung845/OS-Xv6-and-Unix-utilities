@@ -15,6 +15,16 @@ sys_exit(void)
   return 0;  // not reached
 }
 
+
+uint64 sys_trace(void) {
+    int mask;
+    if (argint(0, &mask), mask < 0) {
+      return -1;
+    }
+    struct proc *p = myproc();
+    p->trace_mask = mask;
+    return 0;
+}
 uint64
 sys_getpid(void)
 {

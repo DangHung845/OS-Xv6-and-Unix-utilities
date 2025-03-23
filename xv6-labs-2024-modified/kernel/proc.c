@@ -321,6 +321,7 @@ fork(void)
   acquire(&np->lock);
   np->state = RUNNABLE;
   release(&np->lock);
+  np->trace_mask = p->trace_mask; // Kế thừa trace_mask từ parent process
 
   return pid;
 }
